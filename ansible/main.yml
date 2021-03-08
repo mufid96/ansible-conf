@@ -69,3 +69,26 @@
         name: nodejs
         state: present
 
+- hosts: frontend
+  become: yes
+  tasks:
+    - name: git clone fe
+      git:
+        repo: git@github.com:mufid96/lit-frontend.git
+        version: production
+        dest: /home/fe/lit-frontend
+        accept_hostkey: yes
+        key_file: /home/fe/.ssh/id_rsa
+      tags: clonefe
+
+- hosts: backend
+  become: yes
+  tasks:
+    - name: git clone be
+      git:
+        repo: git@github.com:mufid96/lit-backend.git
+        version: production
+        dest: /home/be/lit-backend
+        accept_hostkey: yes
+        key_file: /home/be/.ssh/id_rsa
+      tags: clonebe

@@ -1,0 +1,15 @@
+- hosts: frontend
+  become: yes
+  vars_files:
+    - vars/git_vars.yml
+  tasks:
+    - name: Read SSH public key to authorize
+      ansible.builtin.shell: cat /home/fe/.ssh/id_rsa.pub
+      register: ssh_pub_key
+
+    - name: Authorize key with GitHub
+      local_action:
+        module: github_key
+        name: Access Key for Some Machine
+        token: '{{ GITHUB_ACCESS_TOKEN }}'
+        pubkey: '{{ ssh_pub_key.stdout }}'

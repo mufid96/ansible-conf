@@ -2,5 +2,7 @@ KEY_TITLE: fe-key
 KEY_PATH: ~/.ssh/id_rsa
 GIT_REPO: git@github.com:mufid96/lit-frontend.git
 GIT_BRANCH: production 
-CLONE_DEST: /home/fe
+CLONE_DEST: ~/litfrontend
 KNOWN_HOSTS_PATH: ~/.ssh/known_hosts
+GITHUB_ACCESS_TOKEN: ~/.ssh/.ansible_vault.pass
+GIT_EXECUTABLE: /usr/bin/git
