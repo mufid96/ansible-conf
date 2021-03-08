@@ -1,0 +1,6 @@
+KEY_TITLE: fe-key
+KEY_PATH: ~/.ssh/id_rsa
+GIT_REPO: git@github.com:mufid96/lit-frontend.git
+GIT_BRANCH: production 
+CLONE_DEST: /home/fe
+KNOWN_HOSTS_PATH: ~/.ssh/known_hosts
