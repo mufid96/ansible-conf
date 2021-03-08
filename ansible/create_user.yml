@@ -1,0 +1,161 @@
+- hosts: public
+  become: yes
+  tasks:
+          - name: "reverse proxy"
+            user:
+                    name: public
+                    password: "$6$8AwcoaoAQ$j3fABUznigvPrhjlCCTMCImUArXXJ8FRrZoJw1kAn1AMLx.spYHwV8ahHxAvst6xZeCxHYUGcAcL8rKXrSFK/."
+                    groups: sudo,docker
+                    generate_ssh_key: yes
+                    ssh_key_bits: 4096
+                    ssh_key_file: .ssh/id_rsa
+                    state: present
+                    shell: /bin/bash
+                    system: no
+                    createhome: yes
+                    home: /home/public
+
+- hosts: frontend
+  become: yes
+  tasks:
+          - name: "fe"
+            user:
+                    name: fe
+                    password: "$6$8AwcoaoAQ$j3fABUznigvPrhjlCCTMCImUArXXJ8FRrZoJw1kAn1AMLx.spYHwV8ahHxAvst6xZeCxHYUGcAcL8rKXrSFK/."
+                    groups: sudo,docker
+                    generate_ssh_key: yes
+                    ssh_key_bits: 4096
+                    ssh_key_file: .ssh/id_rsa
+                    state: present
+                    shell: /bin/bash
+                    system: no
+                    createhome: yes
+                    home: /home/fe
+
+- hosts: frontend2
+  tasks:
+          - name: "fe2"
+            user:
+                    name: fe2
+                    password: "$6$8AwcoaoAQ$j3fABUznigvPrhjlCCTMCImUArXXJ8FRrZoJw1kAn1AMLx.spYHwV8ahHxAvst6xZeCxHYUGcAcL8rKXrSFK/."
+                    groups: sudo,docker
+                    generate_ssh_key: yes
+                    ssh_key_bits: 4096
+                    ssh_key_file: .ssh/id_rsa
+                    state: present
+                    shell: /bin/bash
+                    system: no
+                    createhome: yes
+                    home: /home/fe2
+
+- hosts: backend
+  become: yes
+  tasks:
+          - name: "be"
+            user:
+                    name: be
+                    password: "$6$8AwcoaoAQ$j3fABUznigvPrhjlCCTMCImUArXXJ8FRrZoJw1kAn1AMLx.spYHwV8ahHxAvst6xZeCxHYUGcAcL8rKXrSFK/."
+                    groups: sudo,docker
+                    generate_ssh_key: yes
+                    ssh_key_bits: 4096
+                    ssh_key_file: .ssh/id_rsa
+                    state: present
+                    shell: /bin/bash
+                    system: no
+                    createhome: yes
+                    home: /home/be
+
+- hosts: backend2
+  tasks:
+          - name: "be2"
+            user:
+                    name: be2
+                    password: "$6$8AwcoaoAQ$j3fABUznigvPrhjlCCTMCImUArXXJ8FRrZoJw1kAn1AMLx.spYHwV8ahHxAvst6xZeCxHYUGcAcL8rKXrSFK/."
+                    groups: sudo,docker
+                    generate_ssh_key: yes
+                    ssh_key_bits: 4096
+                    ssh_key_file: .ssh/id_rsa
+                    state: present
+                    shell: /bin/bash
+                    system: no
+                    createhome: yes
+                    home: /home/be2
+
+- hosts: database
+  tasks:
+          - name: "db"
+            user:
+                    name: db
+                    password: "$6$8AwcoaoAQ$j3fABUznigvPrhjlCCTMCImUArXXJ8FRrZoJw1kAn1AMLx.spYHwV8ahHxAvst6xZeCxHYUGcAcL8rKXrSFK/."
+                    groups: sudo,docker
+                    generate_ssh_key: yes
+                    ssh_key_bits: 4096
+                    ssh_key_file: .ssh/id_rsa
+                    state: present
+                    shell: /bin/bash
+                    system: no
+                    createhome: yes
+                    home: /home/db
+
+- hosts: database2
+  tasks:
+          - name: "db2"
+            user:
+                    name: db2
+                    password: "$6$8AwcoaoAQ$j3fABUznigvPrhjlCCTMCImUArXXJ8FRrZoJw1kAn1AMLx.spYHwV8ahHxAvst6xZeCxHYUGcAcL8rKXrSFK/."
+                    groups: sudo,docker
+                    generate_ssh_key: yes
+                    ssh_key_bits: 4096
+                    ssh_key_file: .ssh/id_rsa
+                    state: present
+                    shell: /bin/bash
+                    system: no
+                    createhome: yes
+                    home: /home/db2
+
+- hosts: jenkins
+  tasks:
+          - name: "jk"
+            user:
+                    name: jk
+                    password: "$6$8AwcoaoAQ$j3fABUznigvPrhjlCCTMCImUArXXJ8FRrZoJw1kAn1AMLx.spYHwV8ahHxAvst6xZeCxHYUGcAcL8rKXrSFK/."
+                    groups: sudo,docker
+                    generate_ssh_key: yes
+                    ssh_key_bits: 4096
+                    ssh_key_file: .ssh/id_rsa
+                    state: present
+                    shell: /bin/bash
+                    system: no
+                    createhome: yes
+                    home: /home/jk
+
+- hosts: monitor
+  tasks:
+          - name: "mt"
+            user:
+                    name: monitoring
+                    password: "$6$8AwcoaoAQ$j3fABUznigvPrhjlCCTMCImUArXXJ8FRrZoJw1kAn1AMLx.spYHwV8ahHxAvst6xZeCxHYUGcAcL8rKXrSFK/."
+                    groups: sudo,docker
+                    generate_ssh_key: yes
+                    ssh_key_bits: 4096
+                    ssh_key_file: .ssh/id_rsa
+                    state: present
+                    shell: /bin/bash
+                    system: no
+                    createhome: yes
+                    home: /home/mt
+                                        
+# Change PasswordAuthentication and reload sshd
+- hosts: all
+  become: yes
+  tasks:
+          - name: change PasswordAuth
+            lineinfile:
+                    path: /etc/ssh/sshd_config
+                    regexp: 'PasswordAuthentication no'
+                    line: PasswordAuthentication yes
+
+          - name: reload sshd
+            systemd:
+                    name: sshd
+                    state: reloaded

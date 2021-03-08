@@ -1,0 +1,9 @@
+[public]
+nginx ansible_host=10.0.0.236 ansible_user=public
+[frontend]
+fe ansible_host=10.0.1.219 ansible_user=ubuntu
+[backend]
+be ansible_host=10.0.1.6 ansible_user=ubuntu
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
